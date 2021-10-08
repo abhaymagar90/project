@@ -1,0 +1,53 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}" />
+<!-- style sheets are linked above-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Sort by Last Month</title>
+</head>
+<body style="    padding-top: 20px;
+padding-bottom: 50px;
+background-color: #462f79;">
+
+
+
+<!-- table with elements in a loop --->
+<table class="table table-dark table-striped" border="2">
+    <th>Sno</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Created at</th>
+    <th>Image</th>
+    {% for i in lm %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.created_at}}</td>
+        <td>{% if i.image %}
+            <img src="{{i.image.url}}" width="100px" height="100px"/>
+            {% endif %}
+        <br>
+    <form action="{% url 'tracker:delete' i.id%}">
+    <input type="submit" value="Delete Task" id="delete{{forloop.counter}}"/>
+    <br>
+    </form>
+    
+    </tr>
+    {% endfor %}
+</table>
+<!-- end of table-->
+
+
+
+<br><br><br>
+ <form action="{% url 'tracker:items'%}">
+    <button class="btn btn-success"  style="font-size: 25px; margin-left: 20px;border: 3px solid black;">Homepage</button>
+</form>
+</body>
+</html>

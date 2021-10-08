@@ -1,0 +1,179 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/style.css' %}" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>login</title>
+<style>
+body
+{
+    
+
+}
+
+
+
+#lpage
+{
+padding-top:50px;
+align : center;
+padding-bottom:50px;
+
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+body,
+		html {
+			
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			/* background-image: url(https://source.unsplash.com/WLUHO9A_xik/1600x1000); */
+			background-color: #6657ab;
+		}
+		.user_card {
+			font-size: 25px;
+			width: 520px;
+			margin-top: auto;
+			margin-bottom: auto;
+			background: rgba(255,255,255,0.5);
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
+			border:3px solid black;
+
+		}
+
+		.form_container {
+			margin-top: 20px;
+		}
+
+		#form-title{
+			color: #fff;
+			
+		}
+
+		.login_btn {
+			width: 70%;
+			background: #33ccff !important;
+			color:black !important;
+			font-size: 20px;
+		}
+		.login_btn:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		.login_container {
+			padding: 0 2rem;
+		}
+		.input-group-text {
+			background: #f7ba5b !important;
+			color: white !important;
+			border: 0 !important;
+			border-radius: 0.25rem 0 0 0.25rem !important;
+		}
+		.input_user,
+		.input_pass:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+
+		#messages{
+			background-color: grey;
+			color: #fff;
+			padding: 10px;
+			margin-top: 10px;
+		}
+</style>
+</head>
+<body>
+	<div class="topnav">
+		<a class="active" href="{% url 'tracker:signup'%}">SignUp</a>
+	
+
+		<a href="{% url 'tracker:aboutus'%}">About</a>
+	  </div>
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+
+
+					<h3 id="form-title" style="color: black;">LOGIN</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form method="POST" action="">
+						{% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+
+							Username: &nbsp;<input type="text" name="username" placeholder="Username..." class="form-control">
+						</div>
+
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+
+							Password:  &nbsp;	<input type="password" name="password" placeholder="Password..." class="form-control" >
+						</div>
+
+							<div class="d-flex justify-content-center mt-3 login_container">
+				 				<input class="btn login_btn" type="submit" value="Login">
+				   			</div>
+					</form>
+
+				</div>
+
+				{% for message in messages %}
+					<p id="messages">{{message}}</p>
+				{% endfor %}			
+		
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Don't have an account? <a href="{% url 'tracker:signup' %}" class="ml-2">Sign Up</a>
+					</div>
+			
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
